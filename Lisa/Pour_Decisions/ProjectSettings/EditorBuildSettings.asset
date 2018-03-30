@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SearchScreen.unity
     guid: c0d78ea0b4795f94c8f79dd02d4b23a9
+  - enabled: 1
+    path: Assets/SearchResult.unity
+    guid: 84c77d916438e4646af0206d81f07bc6
