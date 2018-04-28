@@ -9,8 +9,7 @@ public class ShowErrorScript : MonoBehaviour {
 	public InputField textField;
 	public Text error;
 	public Button searchBtn;
-	static public string searchResult;
-	public string sceneName;
+	public Text searchResult;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +18,12 @@ public class ShowErrorScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		searchBtn.onClick.AddListener(CheckTextField);
+		if (textField.text == "") {
+			searchBtn.interactable = false;
+		} else {
+			searchBtn.interactable = true;
+			searchBtn.onClick.AddListener (CheckTextField);
+		}
 	}
 
 	// Update is called once per frame
@@ -29,8 +33,7 @@ public class ShowErrorScript : MonoBehaviour {
 		} 
 		else {
 			error.gameObject.SetActive (false);
-			searchResult = textField.text.ToString();
-			SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+			searchResult.text = textField.text;
 		}
 	}
 }
