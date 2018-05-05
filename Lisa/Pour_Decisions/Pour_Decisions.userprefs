@@ -1,13 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SearchScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/SearchScript.cs" Line="27" Column="31" />
-      <File FileName="Assets/Scripts/ShowErrorScript.cs" Line="12" Column="21" />
-      <File FileName="Assets/Scripts/SearchResult.cs" Line="14" Column="2" />
+      <File FileName="Assets/Scripts/SearchScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ShowErrorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SearchResult.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MenuScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SwitchCanvas.cs" Line="6" Column="1" />
-      <File FileName="Assets/Scripts/MyDatatManager.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/SwitchCanvas.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MyDatatManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Data.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/EmptyClass.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/MyDrinks.cs" Line="1" Column="1" />

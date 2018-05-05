@@ -4,21 +4,28 @@ drinks = {}
 Items = []
 drinks["Items"] = Items
 modifiedDrinks = {}
+ingrd = []
 
 ingredients = ""
 ingredientsCombined = ""
 
-data = json.load(open('nonAlcoholicDrinks.json'))
+data = json.load(open('drinks.json'))
 
 for item in data["Items"]:
     try:
         for i in range(1, 9):
-            ingredients += item["strIngredient" + str(i)] + " "
+            ingrd.append(item["strIngredient" + str(i)] + ",")
     except Exception as e:
         error = e
 
+    ingrd = sorted(ingrd)
+
+    for element in ingrd:
+        ingredients += element
+
     ingredientsCombined = ingredients[:-1]
     ingredients = ""
+    ingrd = []
 
     modifiedDrinks["name"] = item["strDrink"].lower()
     modifiedDrinks["ingredients"] = ingredientsCombined.lower()
@@ -28,5 +35,5 @@ for item in data["Items"]:
     drinks["Items"].append(modifiedDrinks)
     modifiedDrinks = {}
 
-with open('modifiedNonDrinks.json', 'w') as outfile:
+with open('modifiedDrinks.json', 'w') as outfile:
     json.dump(drinks, outfile)
