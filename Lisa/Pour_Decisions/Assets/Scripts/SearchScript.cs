@@ -30,21 +30,26 @@ public class SearchScript : MonoBehaviour {
 		initialize ();
 		myDrinks = JsonHelper.FromJson<MyDrinks>(myJson);
 
-		for (int i=0; i < myDrinks.Length; i++){
+		foreach (var drink in myDrinks){
 			try{
+				if (drink.name.Equals("\'57 chevy with a white license plate")){
+					Debug.Log("L");
+				}
 				//Debug.Log (myDrinks [i].name);
 				recipe.Clear();
-				drinks.Add(myDrinks[i].ingredients, myDrinks[i].name);
-				recipe.Add(myDrinks[i].ingredients);
-				recipe.Add(myDrinks[i].instruction);
-				recipe.Add(myDrinks[i].alcoholic);
-				recipeDict.Add(myDrinks[i].name, recipe);
+				drinks.Add(drink.ingredients, drink.name);
+				Debug.Log(drink.name);
+				recipe.Add(drink.ingredients);
+				recipe.Add(drink.instruction);
+				recipe.Add(drink.alcoholic);
+				recipeDict.Add(drink.name, new List<string>(recipe));
 			}
 			catch (Exception e){
 				Debug.Log (e);
 				continue;
 			}
 		}
+		recipe.Clear ();
 	}
 
 	void Update () {
@@ -59,9 +64,11 @@ public class SearchScript : MonoBehaviour {
 			Array.Sort<string> (splittedString);
 			ingredientPerms = permutation (splittedString);
 
+			resultArray.Clear ();
+
 			for (int i = 0; i < ingredientPerms.Count; i++) {
 				try {
-					if(drinks[ingredientPerms[i]] != null){
+					if(drinks.ContainsKey(ingredientPerms[i])){
 						resultArray.Add(drinks[ingredientPerms[i]]);
 					}
 				} catch (Exception e) {
@@ -74,7 +81,8 @@ public class SearchScript : MonoBehaviour {
 			dropdown.AddOptions (resultArray);
 		}
 
-		if (dropDownText != dropdown.options [dropdown.value].text) {
+		if (resultArray.Count > 0) {
+			
 			string p = dropdown.options [dropdown.value].text;
 			recipeText.text = recipeDict [dropdown.options [dropdown.value].text].ElementAt(0);
 			direction.text = recipeDict [dropdown.options [dropdown.value].text].ElementAt(1);
