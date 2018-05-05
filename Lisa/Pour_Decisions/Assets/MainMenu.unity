@@ -1160,6 +1160,7 @@ MonoBehaviour:
   recipeText: {fileID: 1265428253}
   direction: {fileID: 851461744}
   dropdown: {fileID: 230895314}
+  sortDropdown: {fileID: 2065840961}
 --- !u!1 &230895312
 GameObject:
   m_ObjectHideFlags: 0

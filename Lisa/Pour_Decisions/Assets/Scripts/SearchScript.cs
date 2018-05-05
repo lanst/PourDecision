@@ -13,6 +13,8 @@ public class SearchScript : MonoBehaviour {
 	public InputField input;
 	public Text recipeText;
 	public Text direction;
+	public Dropdown dropdown;
+	public Dropdown sortDropdown;
 
 	private string myJson;
 	private MyDrinks[] myDrinks;
@@ -21,10 +23,8 @@ public class SearchScript : MonoBehaviour {
 	private List<string> resultArray = new List<string>();
 	private Dictionary<string, string> drinks = new Dictionary<string, string> ();
 	private List<string> ingredientPerms;
-	public Dropdown dropdown;
 	private List<string> recipe = new List<string>();
 	private Dictionary<string, List<string>> recipeDict = new Dictionary<string, List<string>> ();
-	private string dropDownText = "";
 
 	void Start () {
 		initialize ();
@@ -53,8 +53,8 @@ public class SearchScript : MonoBehaviour {
 	}
 
 	void Update () {
-		if (result != input.text){
-			result = input.text;
+		if (result != input.text.ToLower()){
+			result = input.text.ToLower();
 			splittedString = result.Split (',');
 
 			for (int i=0; i<splittedString.Length;i++) {
@@ -82,14 +82,28 @@ public class SearchScript : MonoBehaviour {
 		}
 
 		if (resultArray.Count > 0) {
-			
 			string p = dropdown.options [dropdown.value].text;
 			recipeText.text = recipeDict [dropdown.options [dropdown.value].text].ElementAt(0);
 			direction.text = recipeDict [dropdown.options [dropdown.value].text].ElementAt(1);
-			dropDownText = dropdown.options [dropdown.value].text;
 		}
+
+		sortDropdown.onValueChanged.AddListener (delegate {
+			sortDrinks (sortDropdown);
+		});
 	}
 
+	public void sortDrinks(Dropdown dropD){
+		if (dropD.value == 0) {
+			resultArray.Sort ();
+			dropdown.ClearOptions ();
+			dropdown.AddOptions (resultArray);
+		} else if (dropD.value == 1){
+			resultArray.Sort ();
+			resultArray.Reverse ();
+			dropdown.ClearOptions ();
+			dropdown.AddOptions (resultArray);
+		}
+	}
 	public void initialize(){
 		myJson = textFile.ToString();
 	}
