@@ -11,6 +11,8 @@ public class SearchScript : MonoBehaviour {
 	public TextAsset textFile;
 	public Text searchResult;
 	public InputField input;
+	public Text recipeText;
+	public Text direction;
 
 	private string myJson;
 	private MyDrinks[] myDrinks;
@@ -20,6 +22,9 @@ public class SearchScript : MonoBehaviour {
 	private Dictionary<string, string> drinks = new Dictionary<string, string> ();
 	private List<string> ingredientPerms;
 	public Dropdown dropdown;
+	private List<string> recipe = new List<string>();
+	private Dictionary<string, List<string>> recipeDict = new Dictionary<string, List<string>> ();
+	private string dropDownText = "";
 
 	void Start () {
 		initialize ();
@@ -28,7 +33,12 @@ public class SearchScript : MonoBehaviour {
 		for (int i=0; i < myDrinks.Length; i++){
 			try{
 				//Debug.Log (myDrinks [i].name);
+				recipe.Clear();
 				drinks.Add(myDrinks[i].ingredients, myDrinks[i].name);
+				recipe.Add(myDrinks[i].ingredients);
+				recipe.Add(myDrinks[i].instruction);
+				recipe.Add(myDrinks[i].alcoholic);
+				recipeDict.Add(myDrinks[i].name, recipe);
 			}
 			catch (Exception e){
 				Debug.Log (e);
@@ -38,7 +48,7 @@ public class SearchScript : MonoBehaviour {
 	}
 
 	void Update () {
-		if (result != searchResult.text){
+		if (result != input.text){
 			result = input.text;
 			splittedString = result.Split (',');
 
@@ -63,12 +73,13 @@ public class SearchScript : MonoBehaviour {
 			dropdown.ClearOptions ();
 			dropdown.AddOptions (resultArray);
 		}
-		/*result = searchResult.text.ToLower();
-		resultArray = result.Split(',');
-		searchResult.text = result;
-		for (int i = 0; i < resultArray.Length; i++) {
-			//Debug.Log (resultArray [i]);
-		}*/
+
+		if (dropDownText != dropdown.options [dropdown.value].text) {
+			string p = dropdown.options [dropdown.value].text;
+			recipeText.text = recipeDict [dropdown.options [dropdown.value].text].ElementAt(0);
+			direction.text = recipeDict [dropdown.options [dropdown.value].text].ElementAt(1);
+			dropDownText = dropdown.options [dropdown.value].text;
+		}
 	}
 
 	public void initialize(){
