@@ -8,15 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainMenu.unity
     guid: 70c5e23721e14a64a92a6880c05b21db
-  - enabled: 1
-    path: Assets/InstructionScreen.unity
-    guid: de2e83d0de3fd97428f919ae87f5e25e
-  - enabled: 1
-    path: Assets/FavoritesScreen.unity
-    guid: 3ce5011d91f0e3b4f88f981c793d6232
-  - enabled: 1
-    path: Assets/SearchScreen.unity
-    guid: c0d78ea0b4795f94c8f79dd02d4b23a9
-  - enabled: 1
-    path: Assets/SearchResult.unity
-    guid: 84c77d916438e4646af0206d81f07bc6
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
