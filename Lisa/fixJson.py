@@ -8,13 +8,17 @@ ingrd = []
 
 ingredients = ""
 ingredientsCombined = ""
+allIngredients = []
 
 data = json.load(open('drinks.json'))
 
 for item in data["Items"]:
+
     try:
         for i in range(1, 9):
             ingrd.append(item["strIngredient" + str(i)] + ",")
+            if item["strIngredient" + str(i)] not in allIngredients:
+                allIngredients.append(item["strIngredient" + str(i)])
     except Exception as e:
         error = e
 
@@ -35,5 +39,8 @@ for item in data["Items"]:
     drinks["Items"].append(modifiedDrinks)
     modifiedDrinks = {}
 
-with open('modifiedDrinks.json', 'w') as outfile:
-    json.dump(drinks, outfile)
+# with open('modifiedDrinks.json', 'w') as outfile:
+    # json.dump(drinks, outfile)
+
+with open('allIngredients,json', 'w') as handle:
+    json.dump(allIngredients, handle)
